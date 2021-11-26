@@ -10,6 +10,7 @@ class BookDisplay extends React.Component {
   
   render () {
     const { book } = this.props
+    if (!book.authors) {console.log(`Undefined authors`); console.log(book)}
     return(
       <li>
         <div className="book">
@@ -18,7 +19,7 @@ class BookDisplay extends React.Component {
             <MoveMenu/>
           </div>
           <div className="book-title">{book.title}</div>
-          <div className="book-authors">{book.authors.join(", ")}</div>
+          <div className="book-authors">{book.authors ? (book.authors.join(", ")) : ("Author Unknown")}</div>
         </div>
       </li>
     )
