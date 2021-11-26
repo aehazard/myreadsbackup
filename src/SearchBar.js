@@ -1,10 +1,27 @@
 import React from 'react'
 
 class SearchBar extends React.Component {
-  state = {}
+  /*
+  handleChange = event => {
+    const newSearchTerm = event.target.value
+    this.props.sendSearch(newSearchTerm)
+  }
+  */
+  
   render () {
+    const { handleChange, searchTerm } = this.props
     return(
-      <p>SearchBar</p>
+      <div className="search-books-bar">
+        <a className="close-search">Close</a>
+        <div className="search-books-input-wrapper">
+          <input
+            type="text"
+            placeholder="Search by title or author"
+            onChange={handleChange}
+            value={searchTerm}
+          />
+        </div>
+      </div>
     )
   }
 }

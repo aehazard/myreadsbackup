@@ -1,31 +1,42 @@
 import React from 'react'
+import * as BooksAPI from './BooksAPI'
 import SearchBar from './SearchBar'
 import SearchResults from './SearchResults'
 
 class SearchView extends React.Component {
-  state = {}
+  state = {
+      searchResults: [],
+      searchTerm: ""
+  };
+  
+  getSearchResults = term => {
+    if (term) {
+      console.log(`begin getSearchResults with search term ${this.state.searchTerm}`)
+      BooksAPI.search(term).then( searchResults => {
+        console.log(`getSearchResults with search term ${term} complete`)
+        this.setState({searchResults: searchResults})
+        console.log("searchResults:")
+        console.log(searchResults)
+      })
+    } else {
+      console.log(`No search term set`)
+      this.setState({searchResults: []})
+    }
+  }
+  
+  handleSearchChange = event => {
+    const term = event.target.value
+    console.log(`Setting SearchView state for searchTerm to ${term}`)
+    this.setState({searchTerm: term})
+    this.getSearchResults(term)
+  }
+  
   render () {
     return(
       <div className="search-books">
-            <div className="search-books-bar">
-              <a className="close-search" onClick={() => this.setState({ showSearchPage: false })}>Close</a>
-              <div className="search-books-input-wrapper">
-                {/*
-                  NOTES: The search from BooksAPI is limited to a particular set of search terms.
-                  You can find these search terms here:
-                  https://github.com/udacity/reactnd-project-myreads-starter/blob/master/SEARCH_TERMS.md
-
-                  However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
-                  you don't find a specific author or title. Every search is limited by search terms.
-                */}
-                <input type="text" placeholder="Search by title or author"/>
-
-              </div>
-            </div>
-            <div className="search-books-results">
-              <ol className="books-grid"></ol>
-            </div>
-          </div>
+        <SearchBar handleChange={this.handleSearchChange} searchTerm={this.state.searchTerm}/>
+        <SearchResults searchResults={this.state.searchResults}/>
+      </div>
     )
   }
 }
