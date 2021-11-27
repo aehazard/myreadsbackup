@@ -1,5 +1,4 @@
 import React from 'react'
-import * as BooksAPI from './BooksAPI'
 import SearchView from './SearchView'
 import MyReadsView from './MyReadsView'
 import './App.css'
@@ -13,12 +12,6 @@ class BooksApp extends React.Component {
      * pages, as well as provide a good URL they can bookmark and share.
      */
     showSearchPage: false,
-    shelvedBooks: {
-      currentlyReading: [],
-      wantToRead: [],
-      read: []
-    },
-    allBookData: []
   }
   
   toggleView = () => {
@@ -29,22 +22,6 @@ class BooksApp extends React.Component {
     }
   }
   
-  getAllBookData = () => {
-    BooksAPI.getAll().then( allBookData => {
-      const shelvedBooks = {
-        currentlyReading: allBookData.filter(book => book.shelf === "currentlyReading"),
-        wantToRead: allBookData.filter(book => book.shelf === "wantToRead"),
-        read: allBookData.filter(book => book.shelf === "read")
-      }
-      this.setState({allBookData, shelvedBooks})
-      console.log(shelvedBooks)
-    })
-  }
-
-  componentDidMount() {
-    this.getAllBookData()
-  }
-  
   render() {
     return (
       <div className="app">
@@ -52,7 +29,6 @@ class BooksApp extends React.Component {
           <SearchView toggleView={this.toggleView}/>
         ) : (
           <MyReadsView
-            shelvedBooks={this.state.shelvedBooks}
             toggleView={this.toggleView}
           />
         )}

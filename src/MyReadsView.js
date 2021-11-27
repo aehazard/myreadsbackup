@@ -1,8 +1,31 @@
 import React from 'react'
 import Shelf from './Shelf'
+import * as BooksAPI from './BooksAPI'
 
 class MyReadsView extends React.Component {
-  state = {}
+  state = {
+    shelvedBooks: {
+      currentlyReading: [],
+      wantToRead: [],
+      read: []
+    }
+  }
+  
+  getShelvedBookData = () => {
+    BooksAPI.getAll().then( allBookData => {
+      const shelvedBooks = {
+        currentlyReading: allBookData.filter(book => book.shelf === "currentlyReading"),
+        wantToRead: allBookData.filter(book => book.shelf === "wantToRead"),
+        read: allBookData.filter(book => book.shelf === "read")
+      }
+      this.setState({shelvedBooks})
+      console.log(shelvedBooks)
+    })
+  }
+  
+  componentDidMount() {
+    this.getShelvedBookData()
+  }
   
   getShelfTitle = (key) => {
     console.log(key)
@@ -18,8 +41,7 @@ class MyReadsView extends React.Component {
   }
   
   render () {
-    const { shelvedBooks, toggleView } = this.props
-    console.log(shelvedBooks)
+    const { toggleView } = this.props
     return(
       <div className="list-books">
             <div className="list-books-title">
@@ -27,7 +49,7 @@ class MyReadsView extends React.Component {
             </div>
             <div className="list-books-content">
               <div>
-                {Object.entries(shelvedBooks).map(([ shelfName, booksOnShelf ]) => (<Shelf key={shelfName} shelfTitle={this.getShelfTitle(shelfName)} books={booksOnShelf}/>))}
+                {Object.entries(this.state.shelvedBooks).map(([ shelfName, booksOnShelf ]) => (<Shelf key={shelfName} shelfTitle={this.getShelfTitle(shelfName)} books={booksOnShelf}/>))}
               </div>
             </div>
             <div className="open-search">
