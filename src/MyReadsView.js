@@ -18,7 +18,7 @@ class MyReadsView extends React.Component {
   }
   
   render () {
-    const { shelvedBooks } = this.props
+    const { shelvedBooks, toggleView } = this.props
     console.log(shelvedBooks)
     return(
       <div className="list-books">
@@ -31,7 +31,7 @@ class MyReadsView extends React.Component {
               </div>
             </div>
             <div className="open-search">
-              <a>Add a book</a>
+              <a onClick={toggleView}>Add a book</a>
             </div>
           </div>
     )
