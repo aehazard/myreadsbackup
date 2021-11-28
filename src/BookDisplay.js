@@ -16,7 +16,7 @@ class BookDisplay extends React.Component {
         <div className="book">
           <div className="book-top">
             <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: this.imageURL(book) }}></div>
-            <MoveMenu book={book} updateShelf={updateShelf} refreshSourceData={refreshSourceData} refreshSourceData={refreshSourceData}/>
+            <MoveMenu book={book} refreshSourceData={refreshSourceData}/>
           </div>
           <div className="book-title">{book.title}</div>
           <div className="book-authors">{book.authors ? (book.authors.join(", ")) : ("Author Unknown")}</div>

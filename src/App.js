@@ -1,7 +1,6 @@
 import React from 'react'
 import SearchView from './SearchView'
 import MyReadsView from './MyReadsView'
-import * as BooksAPI from './BooksAPI'
 import './App.css'
 
 class BooksApp extends React.Component {
@@ -13,10 +12,6 @@ class BooksApp extends React.Component {
      * pages, as well as provide a good URL they can bookmark and share.
      */
     showSearchPage: false,
-  }
-  
-  updateShelf = (book, shelf) => {
-    BooksAPI.update(book, shelf)
   }
   
   toggleView = () => {
@@ -33,12 +28,10 @@ class BooksApp extends React.Component {
         {this.state.showSearchPage ? (
           <SearchView
             toggleView={this.toggleView}
-            updateShelf={this.updateShelf}
           />
         ) : (
           <MyReadsView
             toggleView={this.toggleView}
-            updateShelf={this.updateShelf}
           />
         )}
       </div>

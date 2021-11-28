@@ -41,7 +41,7 @@ class SearchView extends React.Component {
           searchTerm={this.state.searchTerm}
           toggleView={toggleView}
         />
-        <SearchResults searchResults={this.state.searchResults} updateShelf={updateShelf} refreshSourceData={this.getSearchResults}/>
+        <SearchResults searchResults={this.state.searchResults} refreshSourceData={this.getSearchResults}/>
       </div>
     )
   }
