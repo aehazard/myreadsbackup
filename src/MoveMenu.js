@@ -3,7 +3,7 @@ import * as BooksAPI from './BooksAPI'
 
 class MoveMenu extends React.Component {
   state = {
-    selected: "none",
+    selected: "currentlyReading",
     menuOptions: [
       {
         text: "Currently Reading",
@@ -27,8 +27,10 @@ class MoveMenu extends React.Component {
   handleChange = event => {
     const shelf = event.target.value
     this.props.updateShelf(this.props.book, shelf)
+    this.setState({ selected: shelf })
+    this.props.refreshSourceData()
   }
-  
+    
   setSelected = book => {
     if (book.shelf) {
       this.setState({

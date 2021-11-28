@@ -9,14 +9,14 @@ class BookDisplay extends React.Component {
   }
   
   render () {
-    const { book, updateShelf } = this.props
+    const { book, updateShelf, refreshSourceData } = this.props
     if (!book.authors) {console.log(`Undefined authors`); console.log(book)}
     return(
       <li>
         <div className="book">
           <div className="book-top">
             <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: this.imageURL(book) }}></div>
-            <MoveMenu book={book} updateShelf={updateShelf}/>
+            <MoveMenu book={book} updateShelf={updateShelf} refreshSourceData={refreshSourceData} refreshSourceData={refreshSourceData}/>
           </div>
           <div className="book-title">{book.title}</div>
           <div className="book-authors">{book.authors ? (book.authors.join(", ")) : ("Author Unknown")}</div>

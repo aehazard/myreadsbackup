@@ -9,7 +9,8 @@ class SearchView extends React.Component {
       searchTerm: ""
   };
   
-  getSearchResults = term => {
+  getSearchResults = () => {
+    const term = this.state.searchTerm
     if (term) {
       console.log(`begin getSearchResults with search term ${this.state.searchTerm}`)
       BooksAPI.search(term).then( searchResults => {
@@ -28,7 +29,7 @@ class SearchView extends React.Component {
     const term = event.target.value
     console.log(`Setting SearchView state for searchTerm to ${term}`)
     this.setState({searchTerm: term})
-    this.getSearchResults(term)
+    this.getSearchResults()
   }
   
   render () {
@@ -40,7 +41,7 @@ class SearchView extends React.Component {
           searchTerm={this.state.searchTerm}
           toggleView={toggleView}
         />
-        <SearchResults searchResults={this.state.searchResults} updateShelf={updateShelf}/>
+        <SearchResults searchResults={this.state.searchResults} updateShelf={updateShelf} refreshSourceData={this.getSearchResults}/>
       </div>
     )
   }

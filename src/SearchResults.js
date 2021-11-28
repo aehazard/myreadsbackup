@@ -4,22 +4,22 @@ import BookDisplay from './BookDisplay'
 class SearchResults extends React.Component {
   state = {}
   
-  mapBookDisplay = (searchResults, updateShelf) => {
+  mapBookDisplay = (searchResults, updateShelf, refreshSourceData) => {
     if (searchResults.length > 0) {
       console.log("Displaying search results...")
       console.log(searchResults)
-      return searchResults.map(book => (<BookDisplay key={book.id} book={book} updateShelf={updateShelf}/>))
+      return searchResults.map(book => (<BookDisplay key={book.id} book={book} updateShelf={updateShelf} refreshSourceData={refreshSourceData}/>))
     } else {
       console.log("No search results to display")
     }
   }
   
   render () {
-    const { searchResults, updateShelf } = this.props
+    const { searchResults, updateShelf, refreshSourceData } = this.props
     return(
       <div className="search-books-results">
         <ol className="books-grid">
-          {this.mapBookDisplay(searchResults, updateShelf)}
+          {this.mapBookDisplay(searchResults, updateShelf, refreshSourceData)}
         </ol>
       </div>
     )

@@ -49,7 +49,7 @@ class MyReadsView extends React.Component {
             </div>
             <div className="list-books-content">
               <div>
-                {Object.entries(this.state.shelvedBooks).map(([ shelfName, booksOnShelf ]) => (<Shelf key={shelfName} shelfTitle={this.getShelfTitle(shelfName)} books={booksOnShelf} updateShelf={updateShelf}/>))}
+                {Object.entries(this.state.shelvedBooks).map(([ shelfName, booksOnShelf ]) => (<Shelf key={shelfName} shelfTitle={this.getShelfTitle(shelfName)} books={booksOnShelf} updateShelf={updateShelf} refreshSourceData={this.getShelvedBookData}/>))}
               </div>
             </div>
             <div className="open-search">
