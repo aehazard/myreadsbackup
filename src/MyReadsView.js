@@ -41,7 +41,7 @@ class MyReadsView extends React.Component {
   }
   
   render () {
-    const { toggleView } = this.props
+    const { toggleView, updateShelf } = this.props
     return(
       <div className="list-books">
             <div className="list-books-title">
@@ -49,7 +49,7 @@ class MyReadsView extends React.Component {
             </div>
             <div className="list-books-content">
               <div>
-                {Object.entries(this.state.shelvedBooks).map(([ shelfName, booksOnShelf ]) => (<Shelf key={shelfName} shelfTitle={this.getShelfTitle(shelfName)} books={booksOnShelf}/>))}
+                {Object.entries(this.state.shelvedBooks).map(([ shelfName, booksOnShelf ]) => (<Shelf key={shelfName} shelfTitle={this.getShelfTitle(shelfName)} books={booksOnShelf} updateShelf={updateShelf}/>))}
               </div>
             </div>
             <div className="open-search">

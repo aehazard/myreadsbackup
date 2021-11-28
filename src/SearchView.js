@@ -32,7 +32,7 @@ class SearchView extends React.Component {
   }
   
   render () {
-    const { toggleView } = this.props
+    const { toggleView, updateShelf } = this.props
     return(
       <div className="search-books">
         <SearchBar
@@ -40,7 +40,7 @@ class SearchView extends React.Component {
           searchTerm={this.state.searchTerm}
           toggleView={toggleView}
         />
-        <SearchResults searchResults={this.state.searchResults}/>
+        <SearchResults searchResults={this.state.searchResults} updateShelf={updateShelf}/>
       </div>
     )
   }
