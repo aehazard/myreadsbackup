@@ -10,10 +10,10 @@ class SearchBar extends React.Component {
   */
   
   render () {
-    const { handleChange, searchTerm, toggleView } = this.props
+    const { handleChange, searchTerm} = this.props
     return(
       <div className="search-books-bar">
-        <Link to="/" onClick={toggleView} className="close-search" >Close</Link>
+        <Link to="/" className="close-search" >Close</Link>
         <div className="search-books-input-wrapper">
           <input
             type="text"

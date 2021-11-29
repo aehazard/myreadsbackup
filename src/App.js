@@ -11,27 +11,12 @@ import './App.css'
 
 class BooksApp extends React.Component {
   state = {
-    /**
-     * TODO: Instead of using this state variable to keep track of which page
-     * we're on, use the URL in the browser's address bar. This will ensure that
-     * users can use the browser's back and forward buttons to navigate between
-     * pages, as well as provide a good URL they can bookmark and share.
-     */
-    showSearchPage: false,
     shelvedBooks: {
       currentlyReading: [],
       wantToRead: [],
       read: []
     },
     shelvedBooksById: {}
-  }
-  
-  toggleView = () => {
-    if (this.state.showSearchPage) {
-      this.setState({ showSearchPage: false})
-    } else {
-      this.setState({ showSearchPage: true})
-    }
   }
   
   getShelvedBookData = () => {
@@ -62,14 +47,12 @@ class BooksApp extends React.Component {
           <Routes>
             <Route path="/" element={
               <MyReadsView
-                toggleView={this.toggleView}
                 shelvedBooks={this.state.shelvedBooks}
                 refreshView={this.getShelvedBookData}
               />
             } />
             <Route path="/search" element={
               <SearchView
-                toggleView={this.toggleView}
                 shelvedBooks={this.state.shelvedBooksById}
                 refreshView={this.getShelvedBookData}
               />
