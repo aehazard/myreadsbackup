@@ -14,7 +14,6 @@ class BookDisplay extends React.Component {
   
   render () {
     const { book, refreshView } = this.props
-    if (!book.authors) {console.log(`Undefined authors`); console.log(book)}
     return(
       <li>
         <div className="book">

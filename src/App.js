@@ -31,8 +31,6 @@ class BooksApp extends React.Component {
         shelvedBooksById[book.id] = book
       }
       this.setState({shelvedBooks, shelvedBooksById})
-      console.log(shelvedBooks)
-      console.log(shelvedBooksById)
     })
   }
   

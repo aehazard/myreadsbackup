@@ -7,7 +7,6 @@ class MyReadsView extends React.Component {
   state = {}
 
   getShelfTitle = (key) => {
-    console.log(key)
     if (key === "read") {
       return "Read"
     } else if (key === "currentlyReading") {
