@@ -57,11 +57,13 @@ class BooksApp extends React.Component {
           <SearchView
             toggleView={this.toggleView}
             shelvedBooks={this.state.shelvedBooksById}
+            refreshView={this.getShelvedBookData}
           />
         ) : (
           <MyReadsView
             toggleView={this.toggleView}
             shelvedBooks={this.state.shelvedBooks}
+            refreshView={this.getShelvedBookData}
           />
         )}
       </div>
