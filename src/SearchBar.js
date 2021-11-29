@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 class SearchBar extends React.Component {
   /*
@@ -12,7 +13,7 @@ class SearchBar extends React.Component {
     const { handleChange, searchTerm, toggleView } = this.props
     return(
       <div className="search-books-bar">
-        <a onClick={toggleView} className="close-search" >Close</a>
+        <Link to="/" onClick={toggleView} className="close-search" >Close</Link>
         <div className="search-books-input-wrapper">
           <input
             type="text"

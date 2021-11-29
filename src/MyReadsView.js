@@ -1,6 +1,7 @@
 import React from 'react'
 import Shelf from './Shelf'
 import * as BooksAPI from './BooksAPI'
+import { Link } from 'react-router-dom'
 
 class MyReadsView extends React.Component {
   state = {}
@@ -31,7 +32,7 @@ class MyReadsView extends React.Component {
               </div>
             </div>
             <div className="open-search">
-              <a onClick={toggleView}>Add a book</a>
+              <Link to="/search" onClick={toggleView}>Add a book</Link>
             </div>
           </div>
     )

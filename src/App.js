@@ -2,8 +2,11 @@ import React from 'react'
 import SearchView from './SearchView'
 import MyReadsView from './MyReadsView'
 import * as BooksAPI from './BooksAPI'
-import ReactDOM from 'react-dom'
-import { BrowserRouter } from 'react-router-dom'
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+} from "react-router-dom";
 import './App.css'
 
 class BooksApp extends React.Component {
@@ -55,19 +58,24 @@ class BooksApp extends React.Component {
   render() {
     return (
       <div className="app">
-        {this.state.showSearchPage ? (
-          <SearchView
-            toggleView={this.toggleView}
-            shelvedBooks={this.state.shelvedBooksById}
-            refreshView={this.getShelvedBookData}
-          />
-        ) : (
-          <MyReadsView
-            toggleView={this.toggleView}
-            shelvedBooks={this.state.shelvedBooks}
-            refreshView={this.getShelvedBookData}
-          />
-        )}
+        <Router>
+          <Routes>
+            <Route path="/" element={
+              <MyReadsView
+                toggleView={this.toggleView}
+                shelvedBooks={this.state.shelvedBooks}
+                refreshView={this.getShelvedBookData}
+              />
+            } />
+            <Route path="/search" element={
+              <SearchView
+                toggleView={this.toggleView}
+                shelvedBooks={this.state.shelvedBooksById}
+                refreshView={this.getShelvedBookData}
+              />
+            } />
+          </Routes>
+        </Router>
       </div>
     )
   }
