@@ -2,6 +2,8 @@ import React from 'react'
 import SearchView from './SearchView'
 import MyReadsView from './MyReadsView'
 import * as BooksAPI from './BooksAPI'
+import ReactDOM from 'react-dom'
+import { BrowserRouter } from 'react-router-dom'
 import './App.css'
 
 class BooksApp extends React.Component {
