@@ -28,7 +28,7 @@ class MoveMenu extends React.Component {
     const shelf = event.target.value
     BooksAPI.update(this.props.book, shelf).then(() => {
       this.setState({ selected: shelf })
-      this.props.refreshSourceData()
+      this.props.refreshView()
       console.log("results from API update")
     })
   }
@@ -50,7 +50,6 @@ class MoveMenu extends React.Component {
   }
   
   render () {
-    const { book } = this.props      
     return(
       <div className="book-shelf-changer">
         <select value={this.state.selected} onChange={this.handleChange}>

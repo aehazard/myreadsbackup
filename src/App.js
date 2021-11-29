@@ -1,6 +1,7 @@
 import React from 'react'
 import SearchView from './SearchView'
 import MyReadsView from './MyReadsView'
+import * as BooksAPI from './BooksAPI'
 import './App.css'
 
 class BooksApp extends React.Component {
@@ -12,6 +13,12 @@ class BooksApp extends React.Component {
      * pages, as well as provide a good URL they can bookmark and share.
      */
     showSearchPage: false,
+    shelvedBooks: {
+      currentlyReading: [],
+      wantToRead: [],
+      read: []
+    },
+    shelvedBooksById: {}
   }
   
   toggleView = () => {
@@ -22,16 +29,39 @@ class BooksApp extends React.Component {
     }
   }
   
+  getShelvedBookData = () => {
+    BooksAPI.getAll().then( allBookData => {
+      const shelvedBooks = {
+        currentlyReading: allBookData.filter(book => book.shelf === "currentlyReading"),
+        wantToRead: allBookData.filter(book => book.shelf === "wantToRead"),
+        read: allBookData.filter(book => book.shelf === "read")
+      }
+      const shelvedBooksById = {}
+      for (const book of allBookData) {
+        shelvedBooksById[book.id] = book
+      }
+      this.setState({shelvedBooks, shelvedBooksById})
+      console.log(shelvedBooks)
+      console.log(shelvedBooksById)
+    })
+  }
+  
+  componentDidMount() {
+    this.getShelvedBookData()
+  }
+  
   render() {
     return (
       <div className="app">
         {this.state.showSearchPage ? (
           <SearchView
             toggleView={this.toggleView}
+            shelvedBooks={this.state.shelvedBooksById}
           />
         ) : (
           <MyReadsView
             toggleView={this.toggleView}
+            shelvedBooks={this.state.shelvedBooks}
           />
         )}
       </div>

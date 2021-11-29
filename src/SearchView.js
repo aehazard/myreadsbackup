@@ -13,11 +13,18 @@ class SearchView extends React.Component {
     const term = this.state.searchTerm
     if (term) {
       console.log(`begin getSearchResults with search term ${this.state.searchTerm}`)
+      console.log("shelved books received in props")
+      console.log(this.props.shelvedBooks)
       BooksAPI.search(term).then( searchResults => {
         console.log(`getSearchResults with search term ${term} complete`)
-        this.setState({searchResults: searchResults})
         console.log("searchResults:")
+        for (const book of searchResults) {
+          if (book.id in this.props.shelvedBooks) {
+            book.shelf = this.props.shelvedBooks[book.id].shelf
+          }
+        }
         console.log(searchResults)
+        this.setState({ searchResults })
       })
     } else {
       console.log(`No search term set`)
@@ -41,7 +48,7 @@ class SearchView extends React.Component {
           searchTerm={this.state.searchTerm}
           toggleView={toggleView}
         />
-        <SearchResults searchResults={this.state.searchResults} refreshSourceData={this.getSearchResults}/>
+        <SearchResults searchResults={this.state.searchResults} refreshView={this.refreshView}/>
       </div>
     )
   }
