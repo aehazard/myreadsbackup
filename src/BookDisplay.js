@@ -5,7 +5,11 @@ class BookDisplay extends React.Component {
   state = {}
   
   imageURL = (book) => {
-    return `url(${book.imageLinks.thumbnail})`
+    if (book.imageLinks) {
+      return `url(${book.imageLinks.thumbnail})`
+    } else {
+      return "none"
+    }
   }
   
   render () {
