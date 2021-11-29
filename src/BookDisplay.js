@@ -22,7 +22,7 @@ class BookDisplay extends React.Component {
             <MoveMenu book={book} refreshView={refreshView}/>
           </div>
           <div className="book-title">{book.title}</div>
-          <div className="book-authors">{book.authors ? (book.authors.join(", ")) : ("Author Unknown")}</div>
+          <div className="book-authors">{book.authors ? (book.authors.join(", ")) : ("")}</div>
         </div>
       </li>
     )
