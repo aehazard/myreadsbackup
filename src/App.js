@@ -19,6 +19,9 @@ class BooksApp extends React.Component {
     shelvedBooksById: {}
   }
   
+  /**
+  * @description Fetches shelved books from API and updates the App state
+  */
   getShelvedBookData = () => {
     BooksAPI.getAll().then( allBookData => {
       const shelvedBooks = {

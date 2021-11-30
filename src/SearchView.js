@@ -9,6 +9,9 @@ class SearchView extends React.Component {
       searchTerm: ""
   };
   
+  /**
+  * @description Fetches books matching search term from API and updates the SearchView component state
+  */
   getSearchResults = (term) => {
     if(!term) {
       console.log("Clearing search results, no term entered")
@@ -31,6 +34,9 @@ class SearchView extends React.Component {
     }
   }
   
+  /**
+  * @description Handles a change in the search input by triggering getSearchResults and updating the searchTerm in in the SearchView component state
+  */
   handleSearchChange = event => {
     const term = event.target.value
     this.setState({searchTerm: term})

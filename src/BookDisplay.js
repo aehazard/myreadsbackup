@@ -2,8 +2,10 @@ import React from 'react'
 import MoveMenu from './MoveMenu'
 
 class BookDisplay extends React.Component {
-  state = {}
-  
+  /**
+  * @description Creates url from url string provided for book image
+  * @param {book} Object containing data for a single book
+  */
   imageURL = (book) => {
     if (book.imageLinks) {
       return `url(${book.imageLinks.thumbnail})`

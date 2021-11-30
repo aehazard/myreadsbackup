@@ -5,12 +5,16 @@ import { Link } from 'react-router-dom'
 class MyReadsView extends React.Component {
   state = {}
 
-  getShelfTitle = (key) => {
-    if (key === "read") {
+  /**
+  * @description Get shelf display text based on value in shelf name in book data
+  * @return String with formatted shelf description
+  */
+  getShelfTitle = (shelfName) => {
+    if (shelfName === "read") {
       return "Read"
-    } else if (key === "currentlyReading") {
+    } else if (shelfName === "currentlyReading") {
       return "Currently Reading"
-    } else if (key === "wantToRead") {
+    } else if (shelfName === "wantToRead") {
       return "Want to Read"
     } else {
       return ""

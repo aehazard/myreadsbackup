@@ -24,6 +24,10 @@ class MoveMenu extends React.Component {
     ]
   }
 
+  /**
+  * @description Handles a change in the book location menu by sending and update to the API and trigging a data refresh in the parent App component
+  * @param { event } Event object sent by form change
+  */
   handleChange = event => {
     const shelf = event.target.value
     BooksAPI.update(this.props.book, shelf).then(() => {
@@ -32,7 +36,10 @@ class MoveMenu extends React.Component {
       console.log("results from API update")
     })
   }
-    
+  
+  /**
+  * @description Set selected item in menu according to book data
+  */
   setSelected = book => {
     if (book.shelf) {
       this.setState({
