@@ -9,30 +9,36 @@ class SearchView extends React.Component {
       searchTerm: ""
   };
   
-  getSearchResults = () => {
-    const term = this.state.searchTerm
-    if (term) {
-      BooksAPI.search(term).then( searchResults => {
-        for (const book of searchResults) {
-          if (book.id in this.props.shelvedBooks) {
-            book.shelf = this.props.shelvedBooks[book.id].shelf
-          }
-        }
-        this.setState({ searchResults })
-      })
-    } else {
+  getSearchResults = (term) => {
+    if(!term) {
+      console.log("Clearing search results, no term entered")
       this.setState({searchResults: []})
+    } else {
+      BooksAPI.search(term).then(searchResults => {
+        if (searchResults["error"]) {
+          console.log(`Error from API: ${searchResults["error"]}`)
+          console.log("Clearing search results, no results returned")
+          this.setState({searchResults: []})
+        } else {
+          for (const book of searchResults) {
+            if (book.id in this.props.shelvedBooks) {
+              book.shelf = this.props.shelvedBooks[book.id].shelf
+            }
+          }
+          this.setState({ searchResults })
+        }
+      })
     }
   }
   
   handleSearchChange = event => {
     const term = event.target.value
     this.setState({searchTerm: term})
-    this.getSearchResults()
+    this.getSearchResults(term)
   }
   
   render () {
-    const { updateShelf, refreshView } = this.props
+    const { refreshView } = this.props
     return(
       <div className="search-books">
         <SearchBar

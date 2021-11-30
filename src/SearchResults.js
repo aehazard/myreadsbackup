@@ -8,7 +8,7 @@ class SearchResults extends React.Component {
     if (searchResults.length > 0) {
       return searchResults.map(book => (<BookDisplay key={book.id} book={book} refreshView={refreshView}/>))
     } else {
-      console.log("No search results to display")
+      return
     }
   }
   
